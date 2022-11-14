@@ -32,14 +32,23 @@ body, html {
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
-  <video id="video" width="100%" controls autoplay>
+  <video id="video" width="100%" controls>
     <source src="showcase.mp4" type="video/mp4" />
+    Unfortunately your browser doesn't support this video :/
   </video>
-  <div class="w3-display-left w3-text-white" style="padding:48px">
+  <div class="w3-display-left w3-text-white" style="padding:48px" onclick="playPause(event)">
     <span class="w3-jumbo w3-hide-small">Join the Social Impro Theatre Club!</span><br>
-    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Join the Social Impro Theatre Club!</span><br>
-    <span class="w3-large">Give your hobby a new purpose!</span>
-    <p><a href="mailto:socialimprotheatre@matthes.biz?subject=Joining the theatre&body=Hi,%0A%0AI found your website and want to know when and how I can join your next performance?" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Join today!</a></p>
+    <span class="w3-large w3-hide-large w3-hide-medium">Join the Social Impro Theatre Club!</span><br>
+    <span class="w3-large w3-hide-small">Give your hobby a new purpose!</span>
+    <span class="w3-small w3-hide-large w3-hide-medium">Give your hobby a new purpose!</span>
+    <p><a
+        id="join-large"
+        class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off w3-hide-small"
+        href="mailto:socialimprotheatre@matthes.biz?subject=Joining the theatre&body=Hi,%0A%0AI found your website and want to know when and how I can join your next performance?">Join today!</a></p>
+    <p><a
+        id="join-small"
+        class="w3-button w3-white w3-padding-small w3-small w3-opacity w3-hover-opacity-off w3-hide-large w3-hide-medium"
+        href="mailto:socialimprotheatre@matthes.biz?subject=Joining the theatre&body=Hi,%0A%0AI found your website and want to know when and how I can join your next performance?">Join today!</a></p>
   </div> 
 </header>
 
@@ -94,7 +103,18 @@ function onClick(element) {
   var captionText = document.getElementById("caption");
   captionText.innerHTML = element.alt;
 }
+function playPause(event) {
+  if (event.target == document.getElementById("join-large") || event.target == document.getElementById("join-small")) {
+    return;
+  }
+  event.preventDefault();
+  console.log("playPause");
+  var myVideo = document.getElementById("video");
+  if (myVideo.paused) myVideo.play();
+  else myVideo.pause();
+}
 </script>
+
 
 </body>
 </html>
